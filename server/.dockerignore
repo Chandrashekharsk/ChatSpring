@@ -1,0 +1,26 @@
+# Ignore build output directories
+target/
+out/
+
+# Ignore IDE/project files
+.vscode/
+.idea/
+*.iml
+
+# Git files/folders
+.git/
+.gitignore
+
+# OS junk files
+.DS_Store
+Thumbs.db
+
+# Logs and temp files
+*.log
+*.tmp
+
+# Ignore client folder if separate frontend present
+client/
+
+# Node modules (if frontend exists)
+node_modules/
