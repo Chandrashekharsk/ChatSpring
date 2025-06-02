@@ -2,7 +2,7 @@
 FROM eclipse-temurin:21-jdk-alpine
 
 # Set working directory inside container
-WORKDIR /app
+WORKDIR /
 
 # Copy only mvnw and .mvn folder and pom.xml first to leverage Docker cache for dependencies
 COPY mvnw .

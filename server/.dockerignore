@@ -24,3 +24,5 @@ client/
 
 # Node modules (if frontend exists)
 node_modules/
+Dockerfile
+docker-compose.yml
