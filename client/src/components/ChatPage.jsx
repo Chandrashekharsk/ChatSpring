@@ -7,6 +7,7 @@ import SockJS from "sockjs-client";
 import { Stomp } from '@stomp/stompjs';
 import toast from "react-hot-toast";
 import { getMessages } from "../services/RoomService";
+import { getTimeAgo } from "../utils/timeUtils";
 
 const ChatPage = () => {
   const [messages, setMessages] = useState([]);
@@ -18,10 +19,14 @@ const ChatPage = () => {
 
   // Fetch messages when roomId changes
   useEffect(() => {
-    if (!roomId) return;
+    if (!connected || !currUser || !roomId) {
+      navigate("/");
+      return;
+    }
     (async () => {
       try {
         const fetchedmessages = await getMessages(roomId);
+        console.log("Fetched messages:", fetchedmessages);
         setMessages(fetchedmessages);
       } catch (error) {
         console.log("Error fetching messages:", error);
@@ -117,14 +122,25 @@ const ChatPage = () => {
                   : "bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-100 rounded-bl-none"
                   }`}
               >
-                <div className=" flex items-center justify-start gap-2 text-xs font-semibold mb-1">
-                  <img src="https://avatar.iran.liara.run/public" width={20} height={20} alt="avatar" />
-                  <div>{msg.sender}</div>
+                <div className="flex items-center justify-between text-xs font-semibold mb-1">
+                  <div className="flex items-center gap-2">
+                    <img
+                      src="https://avatar.iran.liara.run/public"
+                      width={20}
+                      height={20}
+                      alt="avatar"
+                    />
+                    <div>{msg.sender}</div>
+                  </div>
+                  <span className="text-[10px] text-gray-400 dark:text-gray-300 ml-2">
+                    {getTimeAgo(msg.timestamp)}
+                  </span>
                 </div>
                 <div>{msg.content}</div>
               </div>
             </div>
           ))}
+
         </div>
         <div className="flex items-center p-4 border-t dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
           <button className="mr-2 text-gray-500 hover:text-green-700">

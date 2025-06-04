@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.chat_app.chat_app.entities.Message;
 import com.chat_app.chat_app.entities.Room;
 import com.chat_app.chat_app.repositories.RoomRepository;
-import com.chat_app.payload.MessageRequest;
+import com.chat_app.chat_app.payload.MessageRequest;
 
 @Controller
 public class ChatController {

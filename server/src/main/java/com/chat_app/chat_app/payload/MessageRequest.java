@@ -1,6 +1,4 @@
-package com.chat_app.payload;
-
-import java.time.LocalDateTime;
+package com.chat_app.chat_app.payload;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
