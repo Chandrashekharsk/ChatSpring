@@ -4,7 +4,7 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 FROM openjdk:17.0.1-jdk-slim
-COPY --from=build /target/chat-app-0.0.1-SNAPSHOT.jar chat-app.jar
+COPY --from=build /target/chat_app-0.0.1-SNAPSHOT.jar chat-app.jar
 
 EXPOSE 8081
 
