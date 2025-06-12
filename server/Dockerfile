@@ -1,9 +1,12 @@
-FROM openjdk:21-jdk-slim
+FROM maven:openjdk:3.8.5-openjdk-17 AS build
 
-WORKDIR /app
-COPY target/chat_app-0.0.1-SNAPSHOT.jar app.jar
+COPY . .
+RUN mvn clean package -DskipTests
+
+FROM openjdk:17.0.1-jdk-slim
+COPY --from=build /target/chat-app-0.0.1-SNAPSHOT.jar chat-app.jar
 
 EXPOSE 8081
 
-ENTRYPOINT [ "java", "-jar", "app.jar" ]
+ENTRYPOINT [ "java", "-jar", "chat-app.jar" ]
 
